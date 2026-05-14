@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { ExperienceSection } from "@/components/experience-section";
@@ -40,6 +41,8 @@ function MonoLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   return (
     <div className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <motion.main
@@ -72,7 +75,7 @@ export default function Home() {
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-700 dark:text-neutral-300 md:text-lg">
               I build AI products end-to-end - from serverless backends and RAG
               pipelines to edge deployments and open-source tooling. Currently at
-              Moorcheh shipping enterprise AI, expanding infrastructure onto GCP,
+              Moorcheh shipping enterprise AI Infrastructure,
               and building{" "}
               <span className="font-medium text-neutral-900 dark:text-neutral-100">
                 Memanto
