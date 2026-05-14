@@ -12,7 +12,7 @@ export const leadership: LeadershipEntry[] = [
   {
     role: "Leader · Club President",
     org: "AWS Student Builder Group -Sheridan",
-    period: "Nov 2025 -Present",
+    period: "Nov 2025 - Present",
     points: [
       "Growing a community of 120+ members with a core team of 10",
       "Delivered 5+ hands-on workshops and 1 guest speaker event",
@@ -22,7 +22,7 @@ export const leadership: LeadershipEntry[] = [
   {
     role: "Web Developer",
     org: "Google Developer Group -Sheridan",
-    period: "Sept 2025 -Apr 2026",
+    period: "Sept 2025 - Apr 2026",
     points: [
       "Built and maintained the club's public website",
       "Organising team member for a hackathon with 250+ participants",
@@ -32,7 +32,7 @@ export const leadership: LeadershipEntry[] = [
   {
     role: "Campus Partner",
     org: "Perplexity AI",
-    period: "Jan 2025 -Sept 2025",
+    period: "Jan 2025 - Sept 2025",
     points: [
       "Led a workshop at HackVille introducing students to AI-powered search",
       "Grew Perplexity's presence on campus by 50% through events and outreach",
@@ -42,7 +42,7 @@ export const leadership: LeadershipEntry[] = [
   {
     role: "Club Member",
     org: "Sheridan Robotics Club",
-    period: "Sept 2024 -Present",
+    period: "Sept 2024 - Present",
     points: [
       "Building robotic arms and tethered drones",
       "Programmed LED pattern systems on PSOC microcontrollers",

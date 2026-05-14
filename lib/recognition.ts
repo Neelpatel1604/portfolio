@@ -9,13 +9,13 @@ export type RecognitionRow = {
 export const recognition: RecognitionRow[] = [
   {
     category: "Certification",
-    items: ["AWS Certified Cloud Practitioner · Aug 2024 -Aug 2027"],
+    items: ["AWS Certified Cloud Practitioner · Aug 2024 - Aug 2027"],
   },
   {
     category: "Competitions",
     items: [
-      "Gold Medal · Sheridan Skills -Cloud Computing",
-      "Silver Medal · Skills Ontario Provincial -Cloud Computing (representing Sheridan College)",
+      "Gold Medal · Sheridan Skills - Cloud Computing",
+      "Silver Medal · Skills Ontario Provincial - Cloud Computing (representing Sheridan College)",
       "Top 12 Finalist of 100+ · InnovaS.E Entrepreneurship Competition",
     ],
   },
