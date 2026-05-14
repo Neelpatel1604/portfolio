@@ -49,7 +49,7 @@ export default function Nav() {
           ))}
         </div>
 
-        {/* Theme toggle — desktop */}
+        {/* Theme toggle - desktop */}
         <button
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           aria-label="Toggle theme"
@@ -61,7 +61,7 @@ export default function Nav() {
           }
         </button>
 
-        {/* GitHub icon — rightmost on desktop */}
+        {/* GitHub icon - rightmost on desktop */}
         <a
           href="https://github.com/Neelpatel1604"
           target="_blank"
