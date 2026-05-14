@@ -63,7 +63,7 @@ export default function Home() {
               <MapPin className="size-3.5 shrink-0" strokeWidth={1.5} />
               Toronto, ON
             </div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Neel Patel
             </h1>
             <p className="mt-2 font-mono text-sm text-neutral-700 dark:text-neutral-300">
@@ -88,12 +88,12 @@ export default function Home() {
               >
                 View work
               </a>
-              <a
-                href="#contact"
-                className={`inline-flex items-center justify-center border ${B} px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900`}
-              >
-                Get in touch
-              </a>
+                <a
+                  href="mailto:neelvp2004@gmail.com"
+                  className={`inline-flex items-center justify-center border ${B} px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900`}
+                >
+                  Get in touch
+                </a>
             </div>
           </div>
 

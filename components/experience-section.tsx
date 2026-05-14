@@ -42,11 +42,11 @@ function SectionHeader({ index, title }: { index: string; title: string }) {
 function CompanyHeader({ exp }: { exp: Experience }) {
   return (
     <div
-      className={`flex items-center justify-between border-b border-r px-6 py-4 md:px-10 bg-neutral-200 dark:bg-neutral-800 ${B}`}
+      className={`flex items-center justify-between gap-3 border-b border-r px-6 py-4 md:px-10 bg-neutral-200 dark:bg-neutral-800 ${B}`}
     >
-      <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold tracking-tight">{exp.org}</span>
-        <span className="font-mono text-[10px] text-neutral-500 dark:text-neutral-400">
+      <div className="flex min-w-0 items-center gap-2">
+        <span className="truncate text-sm font-semibold tracking-tight">{exp.org}</span>
+        <span className="shrink-0 font-mono text-[10px] text-neutral-500 dark:text-neutral-400">
           {exp.location}
         </span>
       </div>
@@ -55,9 +55,9 @@ function CompanyHeader({ exp }: { exp: Experience }) {
           href={exp.link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+          className="shrink-0 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
         >
-          {exp.link.label}
+          <span className="hidden sm:inline">{exp.link.label}</span>
           <ArrowUpRight className="size-3" strokeWidth={1.5} />
         </a>
       )}

@@ -52,7 +52,7 @@ export function ProjectsSection() {
                   {proj.year}
                 </span>
               )}
-              <div className={`flex items-center justify-between gap-4 ${proj.year ? "mt-3" : ""}`}>
+              <div className={`flex flex-wrap items-center justify-between gap-3 ${proj.year ? "mt-3" : ""}`}>
                 <h3 className="text-lg font-semibold tracking-tight">{proj.title}</h3>
                 <div className="flex items-center gap-2 shrink-0">
                   <a
