@@ -4,9 +4,12 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "About",      href: "#about" },
+  { label: "Experience", href: "#work" },
+  { label: "Projects",   href: "#projects" },
+  { label: "Leadership", href: "#leadership" },
+  { label: "Stack",      href: "#skills" },
+  { label: "Education",  href: "#education" },
 ];
 
 const border = "border-neutral-900 dark:border-neutral-600";
@@ -27,9 +30,6 @@ export default function Nav() {
           <span className="text-sm font-semibold tracking-tight">
             Neel Patel
           </span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 md:block">
-            Portfolio
-          </span>
         </a>
 
         {/* Desktop links */}
@@ -43,12 +43,6 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className={`flex items-center bg-neutral-900 px-6 font-mono text-[11px] uppercase tracking-widest text-neutral-50 transition-colors hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-white`}
-          >
-            Hire me ↗
-          </a>
         </div>
 
         {/* Mobile menu toggle */}
@@ -80,13 +74,6 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="flex items-center bg-neutral-900 px-6 py-4 font-mono text-[11px] uppercase tracking-widest text-neutral-50 dark:bg-neutral-100 dark:text-neutral-950"
-          >
-            Hire me ↗
-          </a>
         </div>
       )}
     </nav>
