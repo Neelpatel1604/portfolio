@@ -36,7 +36,7 @@ export const experiences: Experience[] = [
         period: "May 2026 - Present",
         type: "Full-time Internship",
         bullets: [
-          "Own enterprise customer delivery end-to-end: scoping custom integrations, designing solution architecture, and managing ongoing support.",
+          "Handle enterprise customer delivery end-to-end: scoping custom integrations, designing solution architecture, and managing ongoing support.",
           "Building Memanto - memory that AI agents love.",
           "Expanding infrastructure onto GCP; architecting Moorcheh on-prem and Moorcheh Edge for self-hosted and edge deployments.",
         ],
