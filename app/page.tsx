@@ -80,7 +80,7 @@ export default function Home() {
               <span className="font-medium text-neutral-900 dark:text-neutral-100">
                 Memanto
               </span>
-              , memory that AI agents love. I lead the AWS Student
+              , memory that AI agents love. Leading the AWS Student
               Builder Group at Sheridan, compete in hackathons, and occasionally
               judge them.
             </p>
