@@ -103,8 +103,8 @@ export default function Home() {
           {/* Stats strip - pinned at bottom */}
           <div className={`grid grid-cols-2 border-b md:grid-cols-4 ${B}`}>
             {[
-              { k: "Workshops",  v: "6",    d: "delivered" },
-              { k: "Members",    v: "120+", d: "Builder Group" },
+              { k: "Workshops",  v: "7",    d: "delivered" },
+              { k: "Members",    v: "700+", d: "Builder Group" },
               { k: "Hackathons", v: "7+",   d: "competed · 3 judged" },
               { k: "Focus",      v: "AI",   d: "edge & cloud" },
             ].map((m, i) => (
