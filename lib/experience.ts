@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
     location: "Remote",
     roles: [
       {
-        title: "Software Developer",
+        title: "Founding Engineer",
         period: "May 2026 - Present",
         type: "Full-time Internship",
         bullets: [
@@ -43,7 +43,7 @@ export const experiences: Experience[] = [
         tags: ["GCP", "Agent Skills", "On-prem", "Edge AI", "Enterprise"],
       },
       {
-        title: "Software Developer",
+        title: "Founding Engineer",
         period: "Sept 2025 - Apr 2026",
         type: "Part-time",
         bullets: [
@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
         tags: ["React", "shadcn/ui", "MCP", "LangChain", "n8n", "RAG"],
       },
       {
-        title: "Software Developer",
+        title: "Founding Engineer",
         period: "May 2025 - Aug 2025",
         type: "Full-time Internship",
         bullets: [
