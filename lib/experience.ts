@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
         tags: ["React", "shadcn/ui", "MCP", "LangChain", "n8n", "RAG"],
       },
       {
-        title: "Founding Engineer",
+        title: "Software Engineer",
         period: "May 2025 - Aug 2025",
         type: "Full-time Internship",
         bullets: [
