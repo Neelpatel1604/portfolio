@@ -2,34 +2,28 @@
 
 import { motion } from "framer-motion";
 import { leadership } from "@/lib/leadership";
-
-const B = "border-neutral-900 dark:border-neutral-600";
+import { SectionHeader } from "@/components/section-header";
+import { B } from "@/lib/styles";
 
 const item = {
   hidden: { opacity: 0, y: 8 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-function SectionHeader({ index, title }: { index: string; title: string }) {
-  return (
-    <div className={`flex items-center justify-between border-b px-6 py-4 md:px-10 bg-neutral-100 dark:bg-neutral-900 ${B}`}>
-      <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
-        {title}
-      </span>
-      <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">{index}</span>
-    </div>
-  );
-}
-
 export function LeadershipSection() {
   return (
     <motion.section id="leadership" variants={item}>
       <SectionHeader index="04" title="Leadership" />
       <div className={`grid grid-cols-1 md:grid-cols-2 border-b ${B}`}>
-        {leadership.map((l, i, arr) => (
+        {leadership.map((l, i, arr) => {
+          const cols = 2;
+          const isLastRow = i >= arr.length - (arr.length % cols === 0 ? cols : arr.length % cols);
+          return (
           <div
             key={l.org}
-            className={`border-b p-6 md:p-10 ${B}
+            className={`group p-6 transition-colors hover:bg-neutral-100/80 dark:hover:bg-neutral-900/40 md:p-10
+              ${!isLastRow ? `border-b ${B}` : ""}
+              ${i % cols === 0 ? `md:border-r ${B}` : ""}
               ${i === arr.length - 1 && arr.length % 2 !== 0 ? "md:col-span-2" : ""}`}
           >
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-300">
@@ -46,7 +40,8 @@ export function LeadershipSection() {
               ))}
             </ul>
           </div>
-        ))}
+          );
+        })}
       </div>
     </motion.section>
   );

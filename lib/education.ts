@@ -11,7 +11,7 @@ export type EducationEntry = {
 export const education: EducationEntry[] = [
   {
     institution: "Sheridan College",
-    program: "Computer Engineering Technology -Advanced Diploma",
+    program: "Computer Engineering Technology - Advanced Diploma",
     period: "May 2024 - Apr 2027",
     note: "GPA 3.59",
   },
