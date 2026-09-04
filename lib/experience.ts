@@ -33,14 +33,23 @@ export const experiences: Experience[] = [
     roles: [
       {
         title: "Founding Engineer",
-        period: "May 2026 - Present",
+        period: "Sept 2026 - Present",
+        type: "Part-time",
+        bullets: [
+          "Continuing part-time on Memanto and Moorcheh platform development.",
+        ],
+        tags: ["GCP", "On-prem", "Edge AI", "Enterprise"],
+      },
+      {
+        title: "Founding Engineer",
+        period: "May 2026 - Aug 2026",
         type: "Full-time Internship",
         bullets: [
-          "Handle enterprise customer delivery end-to-end: scoping custom integrations, designing solution architecture, and managing ongoing support.",
-          "Building Memanto - memory that AI agents love.",
-          "Expanding infrastructure onto GCP; architecting Moorcheh on-prem and Moorcheh Edge for self-hosted and edge deployments.",
+          "Owned enterprise delivery and solution architecture, cutting costs 80% compared to server-based vector solutions.",
+          "Building Memanto, a memory layer for AI agents, reaching 1.8k GitHub stars in 3 months.",
+          "Architected search improvements across GCP, on-prem, and edge deployments, cutting core search latency by ~72%.",
         ],
-        tags: ["GCP", "Agent Skills", "On-prem", "Edge AI", "Enterprise"],
+        tags: ["GCP", "Memanto", "On-prem", "Edge AI", "Enterprise"],
       },
       {
         title: "Founding Engineer",

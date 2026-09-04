@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { experiences, type Experience, type Role } from "@/lib/experience";
-
-const B = "border-neutral-900 dark:border-neutral-600";
+import { getCompanyTenure } from "@/lib/experience-duration";
+import { SectionHeader } from "@/components/section-header";
+import { B } from "@/lib/styles";
 
 const item = {
   hidden: { opacity: 0, y: 8 },
@@ -24,43 +25,39 @@ const TYPE_LABEL: Record<Role["type"], string> = {
   Freelance: "Freelance",
 };
 
-function SectionHeader({ index, title }: { index: string; title: string }) {
-  return (
-    <div
-      className={`flex items-center justify-between border-b border-r px-6 py-4 md:px-10 bg-neutral-100 dark:bg-neutral-900 ${B}`}
-    >
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
-        {title}
-      </span>
-      <span className="font-mono text-[10px] text-neutral-400 dark:text-neutral-600">
-        {index}
-      </span>
-    </div>
-  );
-}
-
 function CompanyHeader({ exp }: { exp: Experience }) {
+  const tenure = getCompanyTenure(exp.roles);
+
   return (
     <div
-      className={`flex items-center justify-between gap-3 border-b border-r px-6 py-4 md:px-10 bg-neutral-200 dark:bg-neutral-800 ${B}`}
+      className={`flex flex-col gap-1 border-b px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3 md:px-10 bg-neutral-200 dark:bg-neutral-800 ${B}`}
     >
-      <div className="flex min-w-0 items-center gap-2">
+      <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
         <span className="truncate text-sm font-semibold tracking-tight">{exp.org}</span>
-        <span className="shrink-0 font-mono text-[10px] text-neutral-500 dark:text-neutral-400">
+        <span className="shrink-0 font-mono text-[11px] text-neutral-600 dark:text-neutral-300">
           {exp.location}
         </span>
       </div>
-      {exp.link && (
-        <a
-          href={exp.link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="shrink-0 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
-        >
-          <span className="hidden sm:inline">{exp.link.label}</span>
-          <ArrowUpRight className="size-3" strokeWidth={1.5} />
-        </a>
-      )}
+      <div className="flex flex-wrap items-center gap-3">
+        {tenure && (
+          <p className="font-mono text-[11px] text-neutral-600 dark:text-neutral-300">
+            {tenure.range}
+            <span className="text-neutral-400 dark:text-neutral-500"> · </span>
+            <span className="text-neutral-500 dark:text-neutral-400">{tenure.duration}</span>
+          </p>
+        )}
+        {exp.link && (
+          <a
+            href={exp.link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+          >
+            <span className="hidden sm:inline">{exp.link.label}</span>
+            <ArrowUpRight className="size-3" strokeWidth={1.5} />
+          </a>
+        )}
+      </div>
     </div>
   );
 }
@@ -74,14 +71,14 @@ function RoleRow({
 }) {
   return (
     <div
-      className={`grid grid-cols-1 lg:grid-cols-12 border-r ${!isLast ? `border-b ${B}` : ""} ${B}`}
+      className={`grid grid-cols-1 lg:grid-cols-12 ${!isLast ? `border-b ${B}` : ""} ${B}`}
     >
       {/* Left: period + title + type */}
       <div className={`px-6 py-8 lg:col-span-3 lg:border-r lg:px-10 ${B}`}>
-        <p className="font-mono text-[11px] text-neutral-500">{role.period}</p>
+        <p className="font-mono text-xs text-neutral-600 dark:text-neutral-300">{role.period}</p>
         <p className="mt-2 text-sm font-medium leading-snug">{role.title}</p>
         <span
-          className={`mt-2 inline-block border px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 ${B}`}
+          className={`mt-2 inline-block border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-neutral-600 dark:text-neutral-300 ${B}`}
         >
           {TYPE_LABEL[role.type]}
         </span>
@@ -93,7 +90,7 @@ function RoleRow({
           {role.bullets.map((b) => (
             <li
               key={b}
-              className="flex gap-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400"
+              className="flex gap-3 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200"
             >
               <span
                 className="mt-2 size-1 shrink-0 rounded-full bg-neutral-400"
@@ -107,7 +104,7 @@ function RoleRow({
           {role.tags.map((t) => (
             <span
               key={t}
-              className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neutral-600 dark:text-neutral-400 ${B}`}
+              className={`border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-neutral-700 dark:text-neutral-300 ${B}`}
             >
               {t}
             </span>
