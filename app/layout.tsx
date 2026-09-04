@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Neel Patel - neelbuilds",
-  description: "Software Developer, Cloud Engineer, and Builder. Building AI products, open-source tooling, and edge deployments.",
+  description: "AI Infrastructure Engineer · Cloud & Systems Builder. Building AI products, open-source tooling, and edge deployments.",
 };
 
 export default function RootLayout({

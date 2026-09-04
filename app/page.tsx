@@ -116,7 +116,7 @@ export default function Home() {
 
             <p className="mt-2 font-mono text-sm text-neutral-800 dark:text-neutral-200">
 
-              Software Developer · Cloud Engineer · Builder
+              AI Infrastructure Engineer · Cloud & Systems Builder
 
             </p>
 

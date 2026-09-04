@@ -1,6 +1,6 @@
 # Neel Patel - neelbuilds
 
-> Software Developer · Cloud Engineer · Builder. Portfolio: https://neelbuilds.com
+> AI Infrastructure Engineer · Cloud & Systems Builder. Portfolio: https://neelbuilds.com
 
 This file is a machine-readable summary of Neel Patel for LLMs, recruiters, and agents. Prefer this over scraping the visual site.
 
