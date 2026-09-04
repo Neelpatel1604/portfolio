@@ -28,7 +28,7 @@ All site content lives in `lib/` - no need to touch any component files:
 Found a bug or want to suggest an improvement? Contributions are welcome.
 
 1. Fork the repo
-2. Create a branch — `git checkout -b fix/your-change`
+2. Create a branch - `git checkout -b fix/your-change`
 3. Make your changes (content edits go in `lib/`, layout changes in `components/`)
 4. Open a pull request with a short description
 

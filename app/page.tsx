@@ -122,7 +122,7 @@ export default function Home() {
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-800 dark:text-neutral-200 md:text-lg md:leading-relaxed">
 
-              I build AI products end-to-end — serverless backends, RAG pipelines,
+              I build AI products end-to-end - serverless backends, RAG pipelines,
 
               edge deployments, and open-source tooling. At Moorcheh I ship enterprise AI
 
