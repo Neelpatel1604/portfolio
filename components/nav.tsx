@@ -29,9 +29,9 @@ export default function Nav() {
         {/* Logo / name */}
         <a
           href="/"
-          className={`flex flex-1 items-center gap-3 border-r px-6 py-4 md:flex-none ${border}`}
+          className={`flex flex-1 items-center gap-3 border-r px-6 py-4 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 md:flex-none ${border}`}
         >
-          <span className="text-sm font-semibold tracking-tight">
+          <span className="text-sm font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             Neel Patel
           </span>
         </a>
@@ -81,9 +81,9 @@ export default function Nav() {
           className={`flex items-center border-l px-5 md:hidden ${border}`}
         >
           {open ? (
-            <X className="size-4" strokeWidth={1.5} />
+            <X className="size-4 text-neutral-900 dark:text-neutral-100" strokeWidth={1.5} />
           ) : (
-            <Menu className="size-4" strokeWidth={1.5} />
+            <Menu className="size-4 text-neutral-900 dark:text-neutral-100" strokeWidth={1.5} />
           )}
         </button>
       </div>
