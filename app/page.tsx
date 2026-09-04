@@ -116,19 +116,23 @@ export default function Home() {
 
             <p className="mt-2 font-mono text-sm text-neutral-800 dark:text-neutral-200">
 
-              Software Developer · Cloud Engineer · Builder
+              AI Infrastructure Engineer · Cloud & Systems Builder
 
             </p>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-800 dark:text-neutral-200 md:text-lg md:leading-relaxed">
 
-              I build AI products end-to-end - serverless backends, RAG pipelines,
+              I build AI infrastructure end-to-end - RAG pipelines, agentic systems,
 
-              edge deployments, and open-source tooling. At Moorcheh I ship enterprise AI
+              and the serverless, edge infrastructure they run on. At Moorcheh, I&apos;ve
 
-              infrastructure; building Memanto, memory that AI agents love. I lead the AWS Student Builder Group at
+              architected search improvements across AWS, GCP, on-prem, and edge
 
-              Sheridan and compete in (and judge) hackathons.
+              deployments, and built Memanto, an open-source memory layer for AI agents.
+
+              Outside that, I lead the AWS Student Builder Group at Sheridan and compete
+
+              in - and judge - hackathons.
 
             </p>
 

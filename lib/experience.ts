@@ -36,9 +36,11 @@ export const experiences: Experience[] = [
         period: "Sept 2026 - Present",
         type: "Part-time",
         bullets: [
-          "Continuing part-time on Memanto and Moorcheh platform development.",
+          "Shipped open-source Memanto memory-agent integrations across Agno, Mastra, CAMEL-AI, and AgentScope.",
+          "Launched Moorcheh on the GCP Marketplace.",
+          "Built custom internal tooling that increased team productivity by ~15%.",
         ],
-        tags: ["GCP", "On-prem", "Edge AI", "Enterprise"],
+        tags: ["Memanto", "Agno", "Mastra", "GCP Marketplace", "Enterprise"],
       },
       {
         title: "Founding Engineer",
