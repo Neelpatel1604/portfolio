@@ -36,8 +36,10 @@ Companies newest-first. Roles within each company newest-first.
 Overall tenure: May 2025 – Present.
 
 Founding Engineer · Part-time · Sept 2026 – Present
-- Continuing part-time work on Memanto and Moorcheh platform development.
-- Tags: GCP, On-prem, Edge AI, Enterprise
+- Shipped open-source Memanto memory-agent integrations across Agno, Mastra, CAMEL-AI, and AgentScope.
+- Launched Moorcheh on the GCP Marketplace.
+- Built custom internal tooling that increased team productivity by ~15%.
+- Tags: Memanto, Agno, Mastra, GCP Marketplace, Enterprise
 
 Founding Engineer Intern · Full-time Internship · May 2026 – Aug 2026
 - Owned enterprise delivery and solution architecture; cut costs ~80% vs server-based vector solutions.
