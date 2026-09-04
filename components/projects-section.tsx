@@ -18,12 +18,12 @@ const item = {
 function SectionHeader({ index, title }: { index: string; title: string }) {
   return (
     <div
-      className={`flex items-center justify-between border-b border-r px-6 py-4 md:px-10 bg-neutral-100 dark:bg-neutral-900 ${B}`}
+      className={`flex items-center justify-between border-b px-6 py-4 md:px-10 bg-neutral-100 dark:bg-neutral-900 ${B}`}
     >
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
+      <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-100">
         {title}
       </span>
-      <span className="font-mono text-[10px] text-neutral-400 dark:text-neutral-600">
+      <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
         {index}
       </span>
     </div>
@@ -40,7 +40,7 @@ export function ProjectsSection() {
           <motion.article
             key={proj.title}
             variants={item}
-            className={`flex flex-col justify-between border-b border-r p-6 md:p-10 ${B}
+            className={`flex flex-col justify-between border-b p-6 md:p-10 ${B}
               ${i === projects.length - 1 && projects.length % 2 !== 0
                 ? "md:col-span-2 md:flex-row md:items-end md:gap-10"
                 : ""
@@ -48,7 +48,7 @@ export function ProjectsSection() {
           >
             <div>
               {proj.year && (
-                <span className="font-mono text-[10px] text-neutral-400">
+                <span className="font-mono text-[11px] text-neutral-600 dark:text-neutral-300">
                   {proj.year}
                 </span>
               )}
@@ -76,14 +76,14 @@ export function ProjectsSection() {
                   </a>
                 </div>
               </div>
-              <p className="mt-2 max-w-md text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
                 {proj.desc}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {proj.tags.map((t) => (
                   <span
                     key={t}
-                    className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neutral-600 dark:text-neutral-400 ${B}`}
+                    className={`border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-neutral-700 dark:text-neutral-300 ${B}`}
                   >
                     {t}
                   </span>
