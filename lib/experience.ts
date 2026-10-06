@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
         tags: ["GCP", "Memanto", "On-prem", "Edge AI", "Enterprise"],
       },
       {
-        title: "Founding Engineer",
+        title: "Software Engineer",
         period: "Sept 2025 - Apr 2026",
         type: "Part-time",
         bullets: [
