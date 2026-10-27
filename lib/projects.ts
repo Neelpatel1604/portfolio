@@ -8,10 +8,18 @@ export type Project = {
   desc: string;
   tags: string[];
   github: string;
+  /** View link. Devpost for most projects; a demo or video is fine too. */
   devpost: string;
 };
 
 export const projects: Project[] = [
+  {
+    title: "Porchline",
+    desc: "Built on Higgs Realtime. One phone call with a local business owner, then a live website on a Netlify link. Higgs interviews the owner, Gemini designs a one-page site from that profile, and the app deploys it.",
+    tags: ["Higgs Realtime", "Next.js", "FastAPI", "Twilio", "Gemini", "Netlify"],
+    github: "https://github.com/Neelpatel1604/porchline",
+    devpost: "https://drive.google.com/file/d/1WOCIOGtCyYMNF_1Ve-mEwt0mblWAnIGf/view?usp=drive_link",
+  },
   {
     title: "Mesh Studio",
     desc: "Cursor for 3D models - a chat-driven editor where AI applies targeted or full-rewrite code changes to OpenSCAD objects, compiling them into STL/3MF previews in real time.",

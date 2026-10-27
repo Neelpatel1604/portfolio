@@ -27,7 +27,7 @@ export function ProjectsSection() {
           <motion.article
             key={proj.title}
             variants={item}
-            className={`group flex flex-col justify-between border-l-2 border-l-transparent p-6 transition-colors hover:border-l-neutral-900 hover:bg-neutral-100/80 dark:hover:border-l-neutral-400 dark:hover:bg-neutral-900/50 md:p-10
+            className={`group flex flex-col justify-between p-6 transition-colors hover:bg-neutral-100/80 dark:hover:bg-neutral-900/50 md:p-10
               ${!isLastRow ? `border-b ${B}` : ""}
               ${i % cols === 0 ? `md:border-r ${B}` : ""}
               ${i === projects.length - 1 && projects.length % 2 !== 0
