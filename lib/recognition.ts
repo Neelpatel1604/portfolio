@@ -21,6 +21,6 @@ export const recognition: RecognitionRow[] = [
   },
   {
     category: "Hackathons",
-    items: ["7+ as Participant · 3 as Judge · 4 workshops delivered"],
+    items: ["7+ as Participant · 3 as Judge · 3-4 workshops delivered"],
   },
 ];

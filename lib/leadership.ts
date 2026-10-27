@@ -15,7 +15,7 @@ export const leadership: LeadershipEntry[] = [
     period: "Nov 2025 - Present",
     points: [
       "Growing a community of 700+ members with a core team of 10",
-      "Delivered 5+ hands-on workshops and 1 guest speaker event",
+      "Delivered 4-5 hands-on workshops and 1 guest speaker event",
       "Focused on giving students practical, career-relevant cloud experience",
     ],
   },
