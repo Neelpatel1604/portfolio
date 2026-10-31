@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Download, Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ACTIVE_NAV, B, LINK_HOVER } from "@/lib/styles";
@@ -59,10 +59,19 @@ export default function Nav() {
           ))}
         </div>
 
+        <a
+          href="/Neelkumar_patel.pdf"
+          download="Neelkumar_patel.pdf"
+          className={`ml-auto hidden items-center gap-2 border-l px-5 font-mono text-xs uppercase tracking-widest text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-900 dark:hover:text-neutral-100 md:flex ${B}`}
+        >
+          <Download className="size-3.5" strokeWidth={1.5} />
+          Resume
+        </a>
+
         <button
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           aria-label="Toggle theme"
-          className={`ml-auto hidden items-center border-l px-5 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 md:flex ${B}`}
+          className={`hidden items-center border-l px-5 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 md:flex ${B}`}
         >
           {mounted && resolvedTheme === "dark"
             ? <Sun className="size-4 text-neutral-600 dark:text-neutral-300" strokeWidth={1.5} />
@@ -116,6 +125,15 @@ export default function Nav() {
               : <><Moon className="size-3.5" strokeWidth={1.5} /> Dark Mode</>
             }
           </button>
+          <a
+            href="/Neelkumar_patel.pdf"
+            download="Neelkumar_patel.pdf"
+            onClick={() => setOpen(false)}
+            className={`flex items-center gap-2 border-b px-6 py-4 font-mono text-xs uppercase tracking-widest text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-900 ${B} ${LINK_HOVER}`}
+          >
+            <Download className="size-3.5" strokeWidth={1.5} />
+            Download Resume
+          </a>
           <a
             href="https://github.com/Neelpatel1604"
             target="_blank"
