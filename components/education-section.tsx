@@ -2,31 +2,44 @@
 
 import { motion } from "framer-motion";
 import { education } from "@/lib/education";
-import { SectionHeader } from "@/components/section-header";
-import { B } from "@/lib/styles";
-
-const item = {
-  hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
-};
+import { GraduationCap } from "lucide-react";
 
 export function EducationSection() {
   return (
-    <motion.section id="education" variants={item}>
-      <SectionHeader index="06" title="Education" />
-      <div className={`border-b ${B}`}>
-        {education.map((edu, i, arr) => (
+    <motion.section
+      id="education"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.4 }}
+      className="py-12 border-t border-neutral-200/80 dark:border-neutral-800/80"
+    >
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+        <GraduationCap className="size-3.5" />
+        <span>Education</span>
+      </div>
+
+      <div className="mt-4 space-y-4">
+        {education.map((edu) => (
           <div
             key={edu.institution}
-            className={`grid grid-cols-1 lg:grid-cols-12 transition-colors hover:bg-neutral-100/50 dark:hover:bg-neutral-900/30 ${i < arr.length - 1 ? `border-b ${B}` : ""}`}
+            className="flex flex-col justify-between gap-4 rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm sm:flex-row sm:items-center dark:border-neutral-800 dark:bg-neutral-900/50"
           >
-            <div className={`px-6 py-7 lg:col-span-3 lg:border-r lg:px-10 ${B}`}>
-              <p className="font-mono text-xs text-neutral-600 dark:text-neutral-300">{edu.period}</p>
-              <p className="mt-1 text-sm font-medium">{edu.institution}</p>
+            <div>
+              <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+                {edu.institution}
+              </h3>
+              <p className="mt-0.5 text-sm text-neutral-600 dark:text-neutral-300">
+                {edu.program}
+              </p>
             </div>
-            <div className="flex flex-col justify-center gap-1 px-6 py-7 lg:col-span-9 lg:px-10">
-              <p className="text-sm font-medium">{edu.program}</p>
-              <p className="font-mono text-xs text-neutral-600 dark:text-neutral-300">{edu.note}</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
+                {edu.period}
+              </span>
+              <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                {edu.note}
+              </span>
             </div>
           </div>
         ))}

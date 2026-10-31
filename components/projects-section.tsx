@@ -1,89 +1,261 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Layers, Sparkles, ArrowRight } from "lucide-react";
 import { projects } from "@/lib/projects";
-import { SectionHeader } from "@/components/section-header";
-import { B } from "@/lib/styles";
+import { useSystem } from "@/components/system-context";
 
-const item = {
-  hidden: { opacity: 0, y: 8 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+const PROJECT_STORY: Record<
+  string,
+  {
+    tagline: string;
+    impact: string;
+    steps: { label: string; sub: string }[];
+  }
+> = {
+  Porchline: {
+    tagline: "One phone call → live deployed business website",
+    impact: "Zero-touch voice-to-production deployment",
+    steps: [
+      { label: "Twilio Phone Call", sub: "Owner answers natural voice call" },
+      { label: "Higgs Realtime AI", sub: "Conducts live discovery interview" },
+      { label: "Gemini Design Synth", sub: "Builds tailored one-page site" },
+      { label: "Netlify Edge Deploy", sub: "Instant live URL texted back" },
+    ],
+  },
+  "Mesh Studio": {
+    tagline: "Cursor for 3D parametric CAD models",
+    impact: "Real-time AI code-to-STL/3MF compiler",
+    steps: [
+      { label: "Natural Chat Prompt", sub: "Describe 3D part or modification" },
+      { label: "Targeted Code Diff", sub: "AI patches OpenSCAD geometry" },
+      { label: "FastAPI CAD Worker", sub: "Compiles binary STL / 3MF mesh" },
+      { label: "Interactive 3D View", sub: "Live rotatable preview in browser" },
+    ],
+  },
+  MoveMean: {
+    tagline: "Grounded RAG search engine for video libraries",
+    impact: "Serverless AWS multimodal indexing",
+    steps: [
+      { label: "S3 Video Upload", sub: "Raw lecture or meeting footage" },
+      { label: "AWS Transcribe", sub: "Timestamped speech extraction" },
+      { label: "SageMaker + DynamoDB", sub: "Semantic vector chunk indexing" },
+      { label: "Amazon Bedrock QA", sub: "Grounded answers with citations" },
+    ],
+  },
+  NovaBuddy: {
+    tagline: "1M-token context serverless AI study companion",
+    impact: "Full-semester PDFs & slides in a single context window",
+    steps: [
+      { label: "Slides & PDF Ingest", sub: "Upload entire course materials" },
+      { label: "Terraform + Lambda", sub: "100% IaC serverless backend" },
+      { label: "Amazon Nova 2 Lite", sub: "1,000,000-token context reasoning" },
+      { label: "Quizzes & Study Chat", sub: "Instant summaries & practice tests" },
+    ],
+  },
+  DeepFace: {
+    tagline: "Real-time adversarial deepfake shield for streamers",
+    impact: "Imperceptible PGD defense at live video frame rates",
+    steps: [
+      { label: "OBS WebSocket", sub: "Intercepts live streamer video feed" },
+      { label: "PyTorch PGD Shield", sub: "Applies adversarial perturbations" },
+      { label: "OpenCV Frame Pipe", sub: "Zero visible quality loss to viewers" },
+      { label: "Deepfake Immunity", sub: "Breaks downstream face-swap AI" },
+    ],
   },
 };
 
 export function ProjectsSection() {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const { activeSkillFilter } = useSystem();
+  const activeProject = projects[selectedIdx] || projects[0];
+  const story = PROJECT_STORY[activeProject.title];
+
   return (
-    <motion.section id="projects" variants={item}>
-      <SectionHeader index="03" title="Projects" />
-      <div className={`grid grid-cols-1 md:grid-cols-2 border-b ${B}`}>
-        {projects.map((proj, i) => {
-          const cols = 2;
-          const isLastRow = i >= projects.length - (projects.length % cols === 0 ? cols : projects.length % cols);
-          return (
-          <motion.article
-            key={proj.title}
-            variants={item}
-            className={`group flex flex-col justify-between p-6 transition-colors hover:bg-neutral-100/80 dark:hover:bg-neutral-900/50 md:p-10
-              ${!isLastRow ? `border-b ${B}` : ""}
-              ${i % cols === 0 ? `md:border-r ${B}` : ""}
-              ${i === projects.length - 1 && projects.length % 2 !== 0
-                ? "md:col-span-2 md:flex-row md:items-end md:gap-10"
-                : ""
-              }`}
-          >
-            <div>
-              {proj.year && (
-                <span className="font-mono text-[11px] text-neutral-600 dark:text-neutral-300">
-                  {proj.year}
-                </span>
-              )}
-              <div className={`flex flex-wrap items-center justify-between gap-3 ${proj.year ? "mt-3" : ""}`}>
-                <h3 className="text-lg font-semibold tracking-tight transition-colors group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
-                  {proj.title}
-                </h3>
-                <div className="flex items-center gap-2 shrink-0">
+    <motion.section
+      id="projects"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.4 }}
+      className="py-16 border-t border-neutral-200/80 dark:border-neutral-800/80"
+    >
+      <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+        <div>
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            <Layers className="size-3.5" />
+            <span>Selected Systems</span>
+          </div>
+          <h2 className="mt-1.5 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl">
+            Projects I&apos;ve designed &amp; shipped
+          </h2>
+        </div>
+        <p className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
+          Click any project to inspect its pipeline architecture
+        </p>
+      </div>
+
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
+        {/* Left: Clean Selectable Project List */}
+        <div className="lg:col-span-5 flex flex-col gap-2.5">
+          {projects.map((proj, idx) => {
+            const isSelected = idx === selectedIdx;
+            const projStory = PROJECT_STORY[proj.title];
+            const matchesFilter =
+              !activeSkillFilter ||
+              proj.tags.some((t) =>
+                t.toLowerCase().includes(activeSkillFilter.toLowerCase())
+              ) ||
+              proj.desc.toLowerCase().includes(activeSkillFilter.toLowerCase());
+
+            return (
+              <button
+                key={proj.title}
+                type="button"
+                onClick={() => setSelectedIdx(idx)}
+                onMouseEnter={() => setSelectedIdx(idx)}
+                className={`group flex flex-col justify-between rounded-2xl border p-5 text-left transition-all cursor-pointer ${
+                  isSelected
+                    ? "border-neutral-900 bg-neutral-900 text-white shadow-md dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-950"
+                    : "border-neutral-200/90 bg-white/70 text-neutral-800 hover:border-neutral-400 hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-neutral-200 dark:hover:border-neutral-700"
+                } ${activeSkillFilter && !matchesFilter ? "opacity-35" : ""}`}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className={`font-mono text-xs ${
+                        isSelected
+                          ? "text-emerald-400 dark:text-emerald-600 font-semibold"
+                          : "text-neutral-400"
+                      }`}
+                    >
+                      0{idx + 1}
+                    </span>
+                    <h3 className="text-base font-semibold tracking-tight">
+                      {proj.title}
+                    </h3>
+                  </div>
+                  <ArrowRight
+                    className={`size-4 transition-transform ${
+                      isSelected
+                        ? "translate-x-0.5 text-emerald-400 dark:text-emerald-600"
+                        : "text-neutral-400 group-hover:translate-x-0.5"
+                    }`}
+                  />
+                </div>
+
+                {projStory && (
+                  <p
+                    className={`mt-1.5 text-xs ${
+                      isSelected
+                        ? "text-neutral-300 dark:text-neutral-600"
+                        : "text-neutral-500 dark:text-neutral-400"
+                    }`}
+                  >
+                    {projStory.tagline}
+                  </p>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Right: Interactive Project Spotlight & Architecture Flow */}
+        <div className="lg:col-span-7 lg:sticky lg:top-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProject.title}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              className="rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/60 md:p-8"
+            >
+              {/* Top Header */}
+              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-neutral-200/80 pb-5 dark:border-neutral-800">
+                <div>
+                  {story && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-emerald-700 dark:text-emerald-300">
+                      <Sparkles className="size-3" />
+                      {story.impact}
+                    </span>
+                  )}
+                  <h3 className="mt-2.5 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                    {activeProject.title}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-2">
                   <a
-                    href={proj.github}
+                    href={activeProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className={`inline-flex items-center justify-center border p-1.5 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 font-mono text-xs font-medium text-neutral-700 transition-colors hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
                   >
-                    <svg viewBox="0 0 16 16" className="size-3.5 fill-current" aria-hidden>
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.778-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                    </svg>
+                    <span>GitHub</span>
+                    <ArrowUpRight className="size-3.5" />
                   </a>
                   <a
-                    href={proj.devpost}
+                    href={activeProject.devpost}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 border px-3 py-1.5 font-mono text-xs uppercase tracking-wider transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-neutral-900 px-4 py-1.5 font-mono text-xs font-medium text-white transition-colors hover:bg-emerald-600 dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-emerald-400"
                   >
-                    View <ArrowUpRight className="size-3.5" strokeWidth={1.5} />
+                    <span>Live Demo</span>
+                    <ArrowUpRight className="size-3.5" />
                   </a>
                 </div>
               </div>
-              <p className="mt-2 max-w-md text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                {proj.desc}
+
+              {/* Description */}
+              <p className="mt-5 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 md:text-base">
+                {activeProject.desc}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {proj.tags.map((t) => (
+
+              {/* Visual 4-Step System Pipeline */}
+              {story && (
+                <div className="mt-6 rounded-xl border border-neutral-200/80 bg-neutral-50/80 p-4 dark:border-neutral-800 dark:bg-neutral-950/60">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+                    How It Works Under The Hood
+                  </p>
+                  <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    {story.steps.map((step, sIdx) => (
+                      <div
+                        key={step.label}
+                        className="flex items-start gap-3 rounded-lg border border-neutral-200/80 bg-white p-3 dark:border-neutral-800/80 dark:bg-neutral-900"
+                      >
+                        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                          {sIdx + 1}
+                        </span>
+                        <div>
+                          <p className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
+                            {step.label}
+                          </p>
+                          <p className="mt-0.5 text-[11px] text-neutral-500 dark:text-neutral-400">
+                            {step.sub}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tech Stack Pills */}
+              <div className="mt-6 flex flex-wrap gap-1.5">
+                {activeProject.tags.map((t) => (
                   <span
                     key={t}
-                    className={`border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-neutral-700 dark:text-neutral-300 ${B}`}
+                    className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 font-mono text-xs text-neutral-700 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300"
                   >
                     {t}
                   </span>
                 ))}
               </div>
-            </div>
-          </motion.article>
-          );
-        })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </motion.section>
   );

@@ -1,347 +1,351 @@
 "use client";
 
-
-
-import { useEffect } from "react";
-
-import { motion } from "framer-motion";
-
-import { Mail, MapPin } from "lucide-react";
-
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Mail,
+  MapPin,
+  ArrowUpRight,
+  Copy,
+  Check,
+  Sparkles,
+  FileText,
+} from "lucide-react";
+import { ArchitectureSpotlight } from "@/components/architecture-spotlight";
 import { ExperienceSection } from "@/components/experience-section";
-
 import { ProjectsSection } from "@/components/projects-section";
-
 import { LeadershipSection } from "@/components/leadership-section";
-
 import { StackSection } from "@/components/stack-section";
-
 import { EducationSection } from "@/components/education-section";
-
 import { RecognitionSection } from "@/components/recognition-section";
-
-import { SectionHeader } from "@/components/section-header";
-
-import { BTN_PRIMARY, B, LINK_HOVER } from "@/lib/styles";
-
-
-
-const container = {
-
-  hidden: { opacity: 0 },
-
-  show: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.04 } },
-
-};
-
-const item = {
-
-  hidden: { opacity: 0, y: 8 },
-
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
-
-};
-
-
-
-function MonoLabel({ children }: { children: React.ReactNode }) {
-
-  return (
-
-    <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-300">
-
-      {children}
-
-    </p>
-
-  );
-
-}
-
-
+import { useSystem } from "@/components/system-context";
 
 export default function Home() {
+  const { openAiWithPrompt } = useSystem();
+  const [copied, setCopied] = useState(false);
+  const [lens, setLens] = useState<"story" | "tldr">("story");
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-
+  const copyEmail = () => {
+    navigator.clipboard?.writeText("neelvp2004@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
 
   return (
-
-    <div className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-
-      <motion.main
-
-        className={`mx-auto max-w-6xl border-l border-r ${B}`}
-
-        initial="hidden"
-
-        animate="show"
-
-        variants={container}
-
-      >
-
-
-
-        <motion.section
-
-          id="about"
-
-          variants={item}
-
-          className={`flex flex-col min-h-[calc(100dvh-3.25rem)] ${B}`}
-
-        >
-
-          <SectionHeader index="01" title="About" />
-
-
-
-          <div className={`flex flex-1 flex-col justify-center border-b px-6 py-10 md:px-10 md:py-14 ${B}`}>
-
-            <div className="flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300">
-
-              <MapPin className="size-3.5 shrink-0 text-neutral-700 dark:text-neutral-300" strokeWidth={1.5} />
-
-              Toronto, ON
-
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-[#09090b] dark:text-neutral-100">
+      <main className="mx-auto max-w-5xl px-6">
+        {/* HERO SECTION — Crystal Clear Identity & Narrative */}
+        <section id="about" className="pt-14 pb-16 md:pt-20 md:pb-20">
+          {/* Top bar: Location + Quick Lens Switcher */}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200/90 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-700 shadow-2xs dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+              <MapPin className="size-3.5 text-emerald-500" />
+              <span>Toronto, ON</span>
+              <span className="text-neutral-300 dark:text-neutral-700">·</span>
+              <span className="font-mono text-emerald-600 dark:text-emerald-400">
+                Founding Engineer @ Moorcheh
+              </span>
             </div>
 
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            {/* Signature Lens Switch: Story vs 15-Second Recruiter Brief */}
+            <div className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100/80 p-1 dark:border-neutral-800 dark:bg-neutral-900">
+              <button
+                type="button"
+                onClick={() => setLens("story")}
+                className={`rounded-full px-3 py-1 font-mono text-[11px] font-medium transition-all cursor-pointer ${
+                  lens === "story"
+                    ? "bg-white text-neutral-900 shadow-2xs dark:bg-neutral-800 dark:text-white"
+                    : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                }`}
+              >
+                Full Story
+              </button>
+              <button
+                type="button"
+                onClick={() => setLens("tldr")}
+                className={`rounded-full px-3 py-1 font-mono text-[11px] font-medium transition-all cursor-pointer ${
+                  lens === "tldr"
+                    ? "bg-white text-neutral-900 shadow-2xs dark:bg-neutral-800 dark:text-white"
+                    : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                }`}
+              >
+                15s Recruiter TL;DR
+              </button>
+            </div>
+          </div>
 
-              Neel Patel
-
+          {/* Main Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mt-8"
+          >
+            <h1 className="text-4xl font-semibold tracking-tight text-neutral-950 sm:text-5xl md:text-6xl md:leading-[1.08] dark:text-white">
+              I&apos;m Neel Patel.{" "}
+              <span className="text-neutral-500 dark:text-neutral-400">
+                I build the cloud &amp; memory infrastructure behind AI products.
+              </span>
             </h1>
 
-            <p className="mt-2 font-mono text-sm text-neutral-800 dark:text-neutral-200">
+            <AnimatePresence mode="wait">
+              {lens === "story" ? (
+                <motion.p
+                  key="story-text"
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-6 max-w-3xl text-base leading-relaxed text-neutral-600 sm:text-lg sm:leading-relaxed dark:text-neutral-300"
+                >
+                  I&apos;m an{" "}
+                  <strong className="font-medium text-neutral-900 dark:text-white">
+                    AI Infrastructure &amp; Systems Engineer
+                  </strong>
+                  . At{" "}
+                  <strong className="font-medium text-neutral-900 dark:text-white">
+                    Moorcheh
+                  </strong>
+                  , I grew from Intern to{" "}
+                  <strong className="font-medium text-neutral-900 dark:text-white">
+                    Founding Engineer
+                  </strong>{" "}
+                  — building{" "}
+                  <strong className="font-medium text-neutral-900 dark:text-white">
+                    Memanto
+                  </strong>{" "}
+                  (an open-source memory layer for AI agents that reached{" "}
+                  <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                    1.8k+ GitHub stars in 3 months
+                  </span>
+                  ) and architecting vector search across AWS, GCP, on-prem, and edge
+                  that cut latency by{" "}
+                  <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                    72%
+                  </span>{" "}
+                  and infrastructure costs by{" "}
+                  <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                    80%
+                  </span>
+                  . Outside work, I lead{" "}
+                  <strong className="font-medium text-neutral-900 dark:text-white">
+                    700+ student builders
+                  </strong>{" "}
+                  as President of the AWS Student Builder Group at Sheridan.
+                </motion.p>
+              ) : (
+                <motion.div
+                  key="tldr-box"
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.04] p-6 dark:bg-emerald-500/[0.06]"
+                >
+                  <p className="font-mono text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                    Executive Summary — Why Neel Stands Out
+                  </p>
+                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 text-sm text-neutral-700 dark:text-neutral-200">
+                    <div>
+                      • <strong>Role:</strong> Founding Engineer @ Moorcheh (May 2025 – Present)
+                    </div>
+                    <div>
+                      • <strong>Open-Source Flagship:</strong> Creator of Memanto (1.8k+ GitHub stars in 90 days)
+                    </div>
+                    <div>
+                      • <strong>Systems Impact:</strong> -80% vector cost, -72% search latency, -60% AWS Lambda cost
+                    </div>
+                    <div>
+                      • <strong>Community &amp; Awards:</strong> AWS Club President (700+ members) · Cloud Computing Gold &amp; Silver Medalist
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-              AI Infrastructure Engineer · Cloud & Systems Builder
-
-            </p>
-
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-800 dark:text-neutral-200 md:text-lg md:leading-relaxed">
-
-              I build AI infrastructure end-to-end - RAG pipelines, agentic systems,
-
-              and the serverless, edge infrastructure they run on. At Moorcheh, I&apos;ve
-
-              architected search improvements across AWS, GCP, on-prem, and edge
-
-              deployments, and built Memanto, an open-source memory layer for AI agents.
-
-              Outside that, I lead the AWS Student Builder Group at Sheridan and compete
-
-              in - and judge - hackathons.
-
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-
+            {/* Primary Actions */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-
-                href="#work"
-
-                className={`inline-flex items-center justify-center border px-5 py-2.5 text-sm font-medium transition-colors ${BTN_PRIMARY} ${B}`}
-
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200"
               >
-
-                View work
-
+                <span>Explore my work</span>
+                <ArrowUpRight className="size-4" />
               </a>
 
-              <a
-
-                href="mailto:neelvp2004@gmail.com"
-
-                className={`inline-flex items-center justify-center border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
-
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700 cursor-pointer"
               >
+                {copied ? (
+                  <>
+                    <Check className="size-4 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400">
+                      Copied neelvp2004@gmail.com
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="size-3.5 text-neutral-400" />
+                    <span>neelvp2004@gmail.com</span>
+                  </>
+                )}
+              </button>
 
-                Get in touch
-
-              </a>
-
-            </div>
-
-          </div>
-
-
-
-          <div className={`grid grid-cols-2 border-b md:grid-cols-4 ${B}`}>
-
-            {[
-
-              { k: "Workshops",  v: "7",    d: "delivered" },
-
-              { k: "Members",    v: "700+", d: "Builder Group" },
-
-              { k: "Hackathons", v: "7+",   d: "competed · 3 judged" },
-
-              { k: "Focus",      v: "AI",   d: "edge & cloud" },
-
-            ].map((m, i) => (
-
-              <div
-
-                key={m.k}
-
-                className={`flex flex-col gap-1 px-6 py-6 md:px-10
-
-                  ${i % 2 === 0 ? `border-r ${B}` : ""}
-
-                  ${i === 1 ? `md:border-r ${B}` : ""}
-
-                  ${i < 2 ? `border-b md:border-b-0 ${B}` : ""}
-
-                `}
-
+              <button
+                type="button"
+                onClick={() => openAiWithPrompt("Why should our team hire Neel?")}
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-700 transition-colors hover:bg-emerald-500/20 dark:text-emerald-300 cursor-pointer"
               >
+                <Sparkles className="size-3.5" />
+                <span>Ask AI about me</span>
+              </button>
 
-                <MonoLabel>{m.k}</MonoLabel>
-
-                <p className="mt-2 font-mono text-2xl font-semibold tabular-nums">
-
-                  {m.v}
-
-                </p>
-
-                <p className="font-mono text-[11px] text-neutral-700 dark:text-neutral-300">{m.d}</p>
-
+              <div className="flex items-center gap-2 pl-1">
+                <a
+                  href="https://github.com/Neelpatel1604"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-neutral-200 bg-white px-3.5 py-2 font-mono text-xs text-neutral-600 transition-colors hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/neelbuilds"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-neutral-200 bg-white px-3.5 py-2 font-mono text-xs text-neutral-600 transition-colors hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://blog.neelbuilds.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-neutral-200 bg-white px-3.5 py-2 font-mono text-xs text-neutral-600 transition-colors hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-600"
+                >
+                  Blog
+                </a>
               </div>
+            </div>
+          </motion.div>
 
+          {/* 4 Scannable Proof Cards */}
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              {
+                label: "Open-Source Traction",
+                value: "1.8k★",
+                sub: "Memanto in 3 months",
+              },
+              {
+                label: "Search Latency Cut",
+                value: "-72%",
+                sub: "Across GCP, edge & on-prem",
+              },
+              {
+                label: "AWS Builder Group",
+                value: "700+",
+                sub: "Members led as President",
+              },
+              {
+                label: "Hackathons & Workshops",
+                value: "7+",
+                sub: "Competed · 3 Judged · 7 Taught",
+              },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-2xs dark:border-neutral-800 dark:bg-neutral-900/50"
+              >
+                <p className="font-mono text-[11px] text-neutral-500 dark:text-neutral-400">
+                  {stat.label}
+                </p>
+                <p className="mt-1.5 font-mono text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl dark:text-white">
+                  {stat.value}
+                </p>
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                  {stat.sub}
+                </p>
+              </div>
             ))}
-
           </div>
 
-        </motion.section>
+          {/* Interactive 3-Pillar Architecture Spotlight */}
+          <ArchitectureSpotlight />
+        </section>
 
-
-
+        {/* FLOWING CONTENT SECTIONS */}
         <ExperienceSection />
-
         <ProjectsSection />
-
         <LeadershipSection />
-
         <StackSection />
-
+        <RecognitionSection />
         <EducationSection />
 
-        <RecognitionSection />
-
-
-
-        <motion.footer
-
+        {/* CLEAN FOOTER */}
+        <footer
           id="contact"
-
-          variants={item}
-
-          className={`flex flex-col gap-6 border-b px-6 py-8 md:flex-row md:items-center md:justify-between md:px-10 ${B}`}
-
+          className="mt-8 flex flex-col justify-between gap-6 border-t border-neutral-200/80 py-12 sm:flex-row sm:items-center dark:border-neutral-800/80"
         >
-
-          <p className="font-mono text-sm text-neutral-600 dark:text-neutral-300">
-
-            © 2026 neelbuilds
-
-          </p>
-
-          <div className="flex flex-wrap gap-6">
-
-            <a
-
-              href="mailto:neelvp2004@gmail.com"
-
-              className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
-
-            >
-
-              <Mail className="size-3.5" strokeWidth={1.5} />
-
-              neelvp2004@gmail.com
-
-            </a>
-
-            <a
-
-              href="https://github.com/Neelpatel1604"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
-
-            >
-
-              <svg viewBox="0 0 16 16" className="size-3.5 fill-current" aria-hidden>
-
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.778-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-
-              </svg>
-
-              GitHub
-
-            </a>
-
-            <a
-
-              href="https://www.linkedin.com/in/neelbuilds"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
-
-            >
-
-              <svg viewBox="0 0 24 24" className="size-3.5 fill-current" aria-hidden>
-
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-
-              </svg>
-
-              LinkedIn
-
-            </a>
-
-            <a
-
-              href="https://blog.neelbuilds.com/"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
-
-            >
-
-              <svg viewBox="0 0 24 24" className="size-3.5 fill-current" aria-hidden>
-
-                <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z" />
-
-              </svg>
-
-              Blog
-
-            </a>
-
+          <div>
+            <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+              Neel Patel · neelbuilds
+            </p>
+            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+              AI Infrastructure Engineer · Toronto, ON
+            </p>
           </div>
 
-        </motion.footer>
-
-
-
-      </motion.main>
-
+          <div className="flex flex-wrap items-center gap-5 text-xs font-medium text-neutral-600 dark:text-neutral-400">
+            <a
+              href="mailto:neelvp2004@gmail.com"
+              className="inline-flex items-center gap-1.5 hover:text-neutral-950 dark:hover:text-white"
+            >
+              <Mail className="size-3.5" />
+              <span>neelvp2004@gmail.com</span>
+            </a>
+            <a
+              href="https://github.com/Neelpatel1604"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-950 dark:hover:text-white"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/neelbuilds"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-950 dark:hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://blog.neelbuilds.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-950 dark:hover:text-white"
+            >
+              Blog
+            </a>
+            <a
+              href="/llm.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-mono text-emerald-600 hover:underline dark:text-emerald-400"
+            >
+              <FileText className="size-3.5" />
+              <span>/llm.txt</span>
+            </a>
+          </div>
+        </footer>
+      </main>
     </div>
-
   );
-
 }
-
-
