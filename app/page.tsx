@@ -152,9 +152,9 @@ export default function Home() {
 
               <a
 
-                href="/Neel_Patel_Resume.pdf"
+                href="/Neelkumar_patel.pdf"
 
-                download="Neel_Patel_Resume.pdf"
+                download="Neelkumar_patel.pdf"
 
                 className={`inline-flex items-center justify-center gap-2 border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
 
@@ -282,9 +282,9 @@ export default function Home() {
 
             <a
 
-              href="/Neel_Patel_Resume.pdf"
+              href="/Neelkumar_patel.pdf"
 
-              download="Neel_Patel_Resume.pdf"
+              download="Neelkumar_patel.pdf"
 
               className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
 

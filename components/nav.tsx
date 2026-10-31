@@ -60,8 +60,8 @@ export default function Nav() {
         </div>
 
         <a
-          href="/Neel_Patel_Resume.pdf"
-          download="Neel_Patel_Resume.pdf"
+          href="/Neelkumar_patel.pdf"
+          download="Neelkumar_patel.pdf"
           className={`ml-auto hidden items-center gap-2 border-l px-5 font-mono text-xs uppercase tracking-widest text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-900 dark:hover:text-neutral-100 md:flex ${B}`}
         >
           <Download className="size-3.5" strokeWidth={1.5} />
@@ -126,8 +126,8 @@ export default function Nav() {
             }
           </button>
           <a
-            href="/Neel_Patel_Resume.pdf"
-            download="Neel_Patel_Resume.pdf"
+            href="/Neelkumar_patel.pdf"
+            download="Neelkumar_patel.pdf"
             onClick={() => setOpen(false)}
             className={`flex items-center gap-2 border-b px-6 py-4 font-mono text-xs uppercase tracking-widest text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-900 ${B} ${LINK_HOVER}`}
           >
