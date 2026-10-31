@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 import { motion } from "framer-motion";
 
-import { Mail, MapPin } from "lucide-react";
+import { Download, Mail, MapPin } from "lucide-react";
 
 import { ExperienceSection } from "@/components/experience-section";
 
@@ -152,6 +152,22 @@ export default function Home() {
 
               <a
 
+                href="/Neel_Patel_Resume.pdf"
+
+                download="Neel_Patel_Resume.pdf"
+
+                className={`inline-flex items-center justify-center gap-2 border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
+
+              >
+
+                <Download className="size-3.5" strokeWidth={1.5} />
+
+                Download resume
+
+              </a>
+
+              <a
+
                 href="mailto:neelvp2004@gmail.com"
 
                 className={`inline-flex items-center justify-center border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${B}`}
@@ -261,6 +277,22 @@ export default function Home() {
               <Mail className="size-3.5" strokeWidth={1.5} />
 
               neelvp2004@gmail.com
+
+            </a>
+
+            <a
+
+              href="/Neel_Patel_Resume.pdf"
+
+              download="Neel_Patel_Resume.pdf"
+
+              className={`inline-flex items-center gap-2 font-mono text-sm text-neutral-700 dark:text-neutral-300 ${LINK_HOVER}`}
+
+            >
+
+              <Download className="size-3.5" strokeWidth={1.5} />
+
+              Resume
 
             </a>
 
